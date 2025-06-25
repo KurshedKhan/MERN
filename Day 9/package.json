@@ -1,0 +1,17 @@
+{
+  "name": "mywebsite",
+  "version": "1.0.0",
+  "description": "\"Tech Innovation\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "khul-ja-sim-sim": "node app.js",
+    "dev" : "nodemon app.js"
+  },
+  "author": "\"Kurshed Khan\"",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
