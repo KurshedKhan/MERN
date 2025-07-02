@@ -1,6 +1,7 @@
 // External Module
 const express = require("express");
 const app = express();
+const path = require('path');
 
 // local module
 const userRouter = require("./router/userRouter");
@@ -12,7 +13,7 @@ app.use(hostRouter);
 
 app.use((req,res,next)=>{
   console.log("Page not found");
-  res.status(404).send(`This page is not found ${req.url} and 404 page`);
+  res.status(404).sendFile(path.join(__dirname,"./","views","404.html"));
 })
 
 const PORT = 3000;

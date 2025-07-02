@@ -1,13 +1,11 @@
 const express = require("express");
 const userRouter = express.Router();
+const path = require("path");
 
 
 userRouter.get("/",(req,res,next)=>{
   console.log("This is my first middleware",req.url,req.method);
-  res.send(`
-    Tech Innovation (Home Page)<br>
-    <a href="/host/addItem">Go to Add Item</a>
-    `);
+  res.sendFile(path.join(__dirname,"../","views","home.html"));
 })
 
 module.exports = userRouter;
