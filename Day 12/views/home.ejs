@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Go to Add Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <header
+      class="container-fluid border border2 rounded rounded-2 bg-primary text-white p-3"
+    >
+      <h1>Tech Innovation (Home Page)</h1>
+    </header>
+    <img src="Images/keyboard.jpg" alt="" width="200" />
+    <main>
+      <a href="/host/addItem" class="btn btn-danger">Go to Add Item</a>
+    </main>
+    <ul>
+      <% items.forEach((item) => { %>
+      <li><%= item.itemname %> - <%= item.email %> - <%= item.name %></li>
+      <% }) %>
+    </ul>
+    <script src="/javascript/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

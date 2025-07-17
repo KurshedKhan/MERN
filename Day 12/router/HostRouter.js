@@ -9,10 +9,13 @@ hostRouter.get("/host/addItem",(req,res,next)=>{
   res.sendFile(path.join(basedir,"views","addHome.html"));
 })
 
+const eleItems = [];
 
 hostRouter.post("/host/addItem",(req,res,next)=>{
+  eleItems.push(req.body);
   console.log("My post regarding middleware",req.url,req.method,req.body);
   res.sendFile(path.join(basedir,"views","homeAdded.html"));
 })
 
-module.exports = hostRouter;
+exports.hostRouter = hostRouter;
+exports.eleItems = eleItems;
