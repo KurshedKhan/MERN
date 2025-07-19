@@ -1,12 +1,8 @@
 const express = require("express");
-const userRouter = express.Router();
-const path = require("path");
-const basedir = require("../utilities/util");
-const {eleItems} = require("../controller/home")
+const home = require("../controller/homes")
 
-userRouter.get("/",(req,res,next)=>{
-  console.log("This is my first middleware",req.url,req.method);
-  res.render('home',{items:eleItems});
-})
+const userRouter = express.Router();
+
+userRouter.get("/",home.main);
 
 module.exports = userRouter;

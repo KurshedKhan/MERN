@@ -2,7 +2,7 @@ const express = require("express");
 const hostRouter = express.Router();
 const path = require('path');
 const basedir = require('../utilities/util');
-const home = require("../controller/home")
+const home = require("../controller/homes")
 
 hostRouter.get("/host/addItem",home.addhome)
 
