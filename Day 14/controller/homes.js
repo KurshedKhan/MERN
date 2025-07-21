@@ -13,6 +13,7 @@ exports.homeadded = (req,res,next)=>{
 }
 
 exports.main = (req,res,next)=>{
-  const eleItems = MyHome.fetchAll();
-  res.render('home',{items:eleItems});
+  MyHome.fetchAll((eleItems)=>{
+    res.render('home',{items:eleItems});
+  });
 }
