@@ -1,0 +1,25 @@
+<%- include("../partials/BasicTopCode") %> <%- include("../partials/nav.ejs") %>
+<main class="container1">
+  <img
+    src="https://www.bwallpaperhd.com/wp-content/uploads/2021/01/NashPoint.jpg"
+    alt="Home Images"
+  />
+</main>
+<section class="d-flex justify-content-start">
+<% items.forEach((item)=>{ %>
+  <div class="card" style="width: 18rem">
+  <img class="card-img-top" src="<%= item.ItemImages %>" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title"><%= item.itemname %></h5>
+    <p class="card-text">
+      <%= item.ItemDescription %>
+    </p>
+    <a href="#" class="btn btn-primary"><%= item.ItemPrice %></a>
+    <div class="my-2">
+      <button class="btn btn-success w-100">Book</button>
+    </div>
+  </div>
+</div>
+<% }) %>
+</section>
+<%- include("../partials/footer") %>
