@@ -26,4 +26,11 @@ module.exports = class MyHome {
       callback(!error ? JSON.parse(data) : []);
     });
   }
+
+  static findById(homeId,callback){
+    this.fetchAll((homes)=>{
+      const home = homes.find(item => item.id === homeId);
+      callback(home);
+    })
+  }
 };

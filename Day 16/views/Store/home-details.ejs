@@ -1,0 +1,15 @@
+<%- include("../partials/BasicTopCode") %> <%- include("../partials/nav.ejs") %>
+<section class="d-flex justify-content-start">
+
+  <div class="card" style="width: 18rem">
+  <img class="card-img-top" src="<%= home.ItemImages %>" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title"><%= home.itemname %></h5>
+    <p class="card-text">
+      <%= home.ItemDescription %>
+    </p>
+    <a href="#" class="btn btn-primary"><%= home.ItemPrice %></a>
+  </div>
+</div>
+</section>
+<%- include("../partials/footer") %>

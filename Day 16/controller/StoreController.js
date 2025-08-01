@@ -19,8 +19,9 @@ exports.homeDetails = (req,res,next)=>{
 }
 exports.homeDetail = (req,res,next)=>{
     const homeId = req.params.homeId;
-    console.log("this is my homeId",homeId);
-    res.render("store/home-details")
+    MyHome.findById(homeId,(home)=>{
+        res.render("store/home-details",{home:home})
+    });
 }
 exports.homeList = (req,res,next)=>{
     MyHome.fetchAll((eleItems)=>{
