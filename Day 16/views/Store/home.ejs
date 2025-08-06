@@ -15,8 +15,9 @@
       <%= item.ItemDescription %>
     </p>
     <a href="#" class="btn btn-primary"><%= item.ItemPrice %></a>
-    <div class="my-2">
+    <div class="my-2 d-flex">
       <button class="btn btn-success w-100">Book</button>
+      <%- include("../partials/favourite", {home:item}) %>
     </div>
   </div>
 </div>

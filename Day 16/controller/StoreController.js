@@ -1,5 +1,6 @@
 // temporary database
 const MyHome = require("../models/data");
+const Favourite = require("../models/favourite");
 
 exports.main = (req,res,next)=>{
   MyHome.fetchAll((eleItems)=>{
@@ -13,6 +14,12 @@ exports.bookings = (req,res,next)=>{
 
 exports.favourite = (req,res,next)=>{
     res.render('store/favourite');
+}
+
+exports.postFavourite = (req,res,next)=>{
+    Favourite.favouriteFetchAll(()=>{
+        res.redirect('/store/favourite');
+    })
 }
 exports.homeDetails = (req,res,next)=>{
     res.render('store/home-details');

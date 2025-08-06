@@ -1,0 +1,49 @@
+<%- include("../partials/BasicTopCode") %> <%- include("../partials/nav") %>
+
+<form action="/host/addItem" method="POST" class="p-5 border border2 bg-primary-subtle">
+  <h4 class="container text-center">Add your item details</h4>
+  <div class="form-group pb-3">
+    <label for="itemName">Enter Your Item</label>
+    <input
+      type="text"
+      name="itemname"
+      class="form-control"
+      id="itemName"
+      placeholder="Enter your item"
+    />
+  </div>
+  <div class="form-group  pb-3">
+    <label for="ItemPrice">Enter Your Item Price</label>
+    <input
+      type="text"
+      name="ItemPrice"
+      class="form-control"
+      id="ItemPrice"
+      placeholder="Enter your item price"
+    />
+  </div>
+  <div class="form-group  pb-3">
+    <label for="ItemPrice">Enter Your Item Images</label>
+    <input
+      type="text"
+      name="ItemImages"
+      class="form-control"
+      id="ItemPrice"
+      placeholder="Enter your item Images"
+    />
+  </div>
+  <div class="form-group  pb-3">
+    <label for="ItemPrice">Enter Your Item description</label>
+    <input
+      type="text"
+      name="ItemDescription"
+      class="form-control"
+      id="ItemPrice"
+      placeholder="Enter your item description"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<%- include("../partials/footer") %>

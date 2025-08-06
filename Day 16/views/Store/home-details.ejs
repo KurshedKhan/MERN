@@ -8,7 +8,10 @@
     <p class="card-text">
       <%= home.ItemDescription %>
     </p>
-    <a href="#" class="btn btn-primary"><%= home.ItemPrice %></a>
+    <div class="d-flex">
+      <a href="#" class="btn btn-primary"><%= home.ItemPrice %></a>
+      <%- include("../partials/favourite") %>
+    </div>
   </div>
 </div>
 </section>
