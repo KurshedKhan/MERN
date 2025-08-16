@@ -1,11 +1,12 @@
 <%- include("../partials/BasicTopCode") %> <%- include("../partials/nav") %>
 
 <form action="/host/addItem" method="POST" class="p-5 border border2 bg-primary-subtle">
-  <h4 class="container text-center">Add your item details</h4>
+  <h4 class="container text-center"><%= editable ? "Edit" : "add" %> your item details</h4>
   <div class="form-group pb-3">
     <label for="itemName">Enter Your Item</label>
     <input
       type="text"
+      value="<%= editable ? home.itemname : '' %>"
       name="itemname"
       class="form-control"
       id="itemName"
@@ -16,6 +17,7 @@
     <label for="ItemPrice">Enter Your Item Price</label>
     <input
       type="text"
+      value="<%= editable ? home.ItemPrice : '' %>"
       name="ItemPrice"
       class="form-control"
       id="ItemPrice"
@@ -26,6 +28,7 @@
     <label for="ItemPrice">Enter Your Item Images</label>
     <input
       type="text"
+      value="<%= editable ? home.ItemImages : '' %>"
       name="ItemImages"
       class="form-control"
       id="ItemPrice"
@@ -36,6 +39,7 @@
     <label for="ItemPrice">Enter Your Item description</label>
     <input
       type="text"
+      value="<%= editable ? home.ItemDescription : '' %>"
       name="ItemDescription"
       class="form-control"
       id="ItemPrice"
@@ -43,7 +47,7 @@
     />
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary"><%= editable ? "Update" : "Submit" %></button>
 </form>
 
 <%- include("../partials/footer") %>

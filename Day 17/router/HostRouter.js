@@ -4,10 +4,12 @@ const path = require('path');
 const basedir = require('../utilities/util');
 const home = require("../controller/HostController")
 
-hostRouter.get("/host/addItem",home.addhome)
+hostRouter.get("/host/addItem",home.editHome)
 
 hostRouter.post("/host/addItem",home.homeadded)
 
 hostRouter.get("/host/host-home-list",home.hostHomeList)
+
+hostRouter.get("/host/editHome/:homeId",home.edithomeItem)
 
 module.exports = hostRouter;

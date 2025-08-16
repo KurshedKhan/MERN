@@ -1,8 +1,22 @@
 // temporary database
 const MyHome = require("../models/data");
 
-exports.addhome = (req,res,next)=>{
-  res.render('host/addHome');
+exports.editHome = (req,res,next)=>{
+  res.render('host/editHome',{editable : false});
+}
+
+exports.edithomeItem = (req,res,next)=>{
+  const homeId = req.params.homeId;
+  const editable = req.query.editable === "true";
+
+  MyHome.findById(homeId,home=>{
+    if(!home){
+      console.log("Home not found");
+      return res.redirect("/host/host-home-list")
+    }
+    res.render('host/editHome',{editable : editable,home:home});
+  })
+
 }
 
 exports.homeadded = (req,res,next)=>{
