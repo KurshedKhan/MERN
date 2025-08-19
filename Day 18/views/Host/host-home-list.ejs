@@ -1,0 +1,22 @@
+<%- include("../partials/BasicTopCode") %> <%- include("../partials/nav.ejs") %>
+<section class="d-flex justify-content-start">
+<% items.forEach((item)=>{ %>
+  <div class="card" style="width: 18rem">
+  <img class="card-img-top" src="<%= item.ItemImages %>" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title"><%= item.itemname %></h5>
+    <p class="card-text">
+      <%= item.ItemDescription %>
+    </p>
+    <a href="#" class="btn btn-primary"><%= item.ItemPrice %></a>
+    <div class="d-flex justify-content-between align-items-center my-2">
+      <a href="/host/editHome/<%= item.id %>?editable=true" class="btn btn-success w-100">Edit</a>
+      <form action="/host/deleteHome/<%= item.id %>" method="POST">
+        <button type="submit" class="btn btn-danger w-100">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+<% }) %>
+</section>
+<%- include("../partials/footer") %>
