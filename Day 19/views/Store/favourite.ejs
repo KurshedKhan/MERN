@@ -2,16 +2,16 @@
 <section class="d-flex justify-content-start">
 <% favouriteHomes.forEach((item)=>{ %>
   <div class="card" style="width: 18rem">
-  <img class="card-img-top" src="<%= item.ItemImages %>" alt="Card image cap" />
+  <img class="card-img-top" src="<%= item.images %>" alt="Card image cap" />
   <div class="card-body">
-    <h5 class="card-title"><%= item.itemname %></h5>
+    <h5 class="card-title"><%= item.productName %></h5>
     <p class="card-text">
-      <%= item.ItemDescription %>
+      <%= item.description %>
     </p>
-    <a href="#" class="btn btn-primary"><%= item.ItemPrice %></a>
+    <a href="#" class="btn btn-primary"><%= item.price %></a>
     <div class="my-2">
-      <a class="btn btn-primary w-100" href="/store/home-details/<%= item.id %>">Details</a>
-       <form action="/store/favourite/deleteFavourite/<%= item.id %>" method="POST">
+      <a class="btn btn-primary w-100" href="/store/home-details/<%= item.homeId %>">Details</a>
+       <form action="/store/favourite/deleteFavourite/<%= item.homeId %>" method="POST">
         <button type="submit" class="btn btn-success w-100">Remove</button>
       </form>
     </div>

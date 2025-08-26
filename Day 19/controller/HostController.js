@@ -45,7 +45,8 @@ exports.deletehomeItem = (req,res,next)=>{
 }
 
 exports.hostHomeList = (req,res,next)=>{
-  MyHome.fetchAll((eleItems)=>{
+  MyHome.fetchAll()
+  .then(([eleItems])=>{
     res.render('host/host-home-list',{items:eleItems});
   });
 }

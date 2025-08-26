@@ -2,15 +2,15 @@
 <section class="d-flex justify-content-start">
 <% items.forEach((item)=>{ %>
   <div class="card" style="width: 18rem">
-  <img class="card-img-top" src="<%= item.ItemImages %>" alt="Card image cap" />
+  <img class="card-img-top" src="<%= item.images %>" alt="Card image cap" />
   <div class="card-body">
-    <h5 class="card-title"><%= item.itemname %></h5>
+    <h5 class="card-title"><%= item.productName %></h5>
     <p class="card-text">
-      <%= item.ItemDescription %>
+      <%= item.description %>
     </p>
-    <a href="#" class="btn btn-primary"><%= item.ItemPrice %></a>
+    <a href="#" class="btn btn-primary"><%= item.price %></a>
     <div class="my-2">
-      <a class="btn btn-primary w-100" href="/store/home-details/<%= item.id %>">Details</a>
+      <a class="btn btn-primary w-100" href="/store/home-details/<%= item.homeId %>">Details</a>
       <button class="btn btn-success w-100">Book</button>
     </div>
   </div>

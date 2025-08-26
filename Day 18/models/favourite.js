@@ -25,9 +25,10 @@ module.exports = class Favourite {
 
   static DeleteById(homeId,callback){
     Favourite.favouriteFetchAll((homes)=>{
-      homes = homes.map(item => item.id !== homeId);
+      const next = homes.filter(id => String(id) !== String(homeId));
       const pathDir = path.join(baseDir, "database", "favourite.json");
-      file.writeFile(pathDir, JSON.stringify(homes), callback);
+      file.writeFile(pathDir, JSON.stringify(next), callback);
     })
-  }  
+  }
+
 };

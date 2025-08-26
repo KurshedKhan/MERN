@@ -11,18 +11,6 @@ const basedir = require('./utilities/util');
 
 const errors = require('./controller/error');
 
-// database 
-
-const db = require('./utilities/sqlconnectionUtil');
-
-db.query('SELECT * FROM homes')
-.then(([row])=>{
-  console.log("my database rows : ",row);
-})
-.catch((error)=>{
-  console.log("my database error : ",error);
-})
-
 app.set("view engine","ejs");
 app.set("views","views");
 app.use(express.static(path.join(basedir,"public")))
