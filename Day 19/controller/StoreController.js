@@ -42,8 +42,15 @@ exports.homeDetails = (req,res,next)=>{
 }
 exports.homeDetail = (req,res,next)=>{
     const homeId = req.params.homeId;
-    MyHome.findById(homeId,(home)=>{
+    MyHome.findById(homeId).then(([homes])=>{
+      const home = homes[0]
+      if(!home){
+        console.log("Home not found");
+        res.redirect("store/home")
+      }
+      else{
         res.render("store/home-details",{home:home})
+      }
     });
 }
 exports.homeList = (req,res,next)=>{
@@ -58,10 +65,11 @@ exports.reserve = (req,res,next)=>{
 
 exports.FavouriteRemove = (req,res,next)=>{
   const favouriteId = req.params.favouriteId;
-  Favourite.DeleteById(favouriteId,error => {
-    if(error){
-      console.log("delete favourite item error",error)
-    }
+  Favourite.DeleteById(favouriteId)
+  .then(()=>{
     res.redirect("/store/home-list");
+  })
+  .catch((error)=>{
+      console.log("delete favourite item error",error)
   })
 }

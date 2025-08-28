@@ -9,7 +9,8 @@ exports.edithomeItem = (req,res,next)=>{
   const homeId = req.params.homeId;
   const editable = req.query.editable === "true";
 
-  MyHome.findById(homeId,home=>{
+  MyHome.findById(homeId).then(([homes])=>{
+    const home = homes[0];
     if(!home){
       console.log("Home not found");
       return res.redirect("/host/host-home-list")
@@ -20,27 +21,27 @@ exports.edithomeItem = (req,res,next)=>{
 }
 
 exports.homeadded = (req,res,next)=>{
-  const {itemname,ItemPrice,ItemImages,ItemDescription} = req.body;
-  const homeObj = new MyHome(itemname,ItemPrice,ItemImages,ItemDescription);
+  const {homeId,productName,price,images,description} = req.body;
+  const homeObj = new MyHome(homeId,productName,price,images,description);
   homeObj.save();
   res.redirect("/host/host-home-list");
 }
 
 exports.postEditHome = (req,res,next)=>{
-  const {id,itemname,ItemPrice,ItemImages,ItemDescription} = req.body;
-  const homeObj = new MyHome(itemname,ItemPrice,ItemImages,ItemDescription);
-  homeObj.id = id;
+  const {homeId,productName,price,images,description} = req.body;
+  const homeObj = new MyHome(homeId,productName,price,images,description);
   homeObj.save();
   res.redirect("/host/host-home-list");
 }
 
 exports.deletehomeItem = (req,res,next)=>{
   const homeId = req.params.homeId;
-  MyHome.DeleteById(homeId,error => {
-    if(error){
-      console.log("delete item error",error)
-    }
+  MyHome.DeleteById(homeId)
+  .then(()=>{
     res.redirect("/host/host-home-list");
+  })
+  .catch(error =>{
+      console.log("delete item error",error)
   })
 }
 

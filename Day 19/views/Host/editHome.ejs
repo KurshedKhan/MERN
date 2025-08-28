@@ -3,8 +3,9 @@
 <form action="/host/<%= editable ? 'editHome' : 'addItem' %>" method="POST" class="p-5 border border2 bg-primary-subtle">
   <h4 class="container text-center"><%= editable ? "Edit" : "add" %> your item details</h4>
   <div class="form-group pb-3">
+    <label for="homeId">Enter Your Unique Id : </label>
     <input
-      type="hidden"
+      type="text"
       value="<%= editable ? home.homeId : '' %>"
       name="homeId"
       class="form-control"
