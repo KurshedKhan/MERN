@@ -1,0 +1,22 @@
+<%- include("../partials/BasicTopCode") %> <%- include("../partials/nav.ejs") %>
+<section class="d-flex justify-content-start">
+<% favouriteHomes.forEach((item)=>{ %>
+  <div class="card" style="width: 18rem">
+  <img class="card-img-top" src="<%= item.images %>" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title"><%= item.productName %></h5>
+    <p class="card-text">
+      <%= item.description %>
+    </p>
+    <a href="#" class="btn btn-primary"><%= item.price %></a>
+    <div class="my-2">
+      <a class="btn btn-primary w-100" href="/store/home-details/<%= item.homeId %>">Details</a>
+       <form action="/store/favourite/deleteFavourite/<%= item.homeId %>" method="POST">
+        <button type="submit" class="btn btn-success w-100">Remove</button>
+      </form>
+    </div>
+  </div>
+</div>
+<% }) %>
+</section>
+<%- include("../partials/footer") %>
