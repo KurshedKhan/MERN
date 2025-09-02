@@ -10,7 +10,7 @@ const hostRouter = require("./router/HostRouter");
 const basedir = require('./utilities/util');
 
 const errors = require('./controller/error');
-const mongoConnect = require("./utilities/MongodbConnection");
+const {mongoConnect} = require("./utilities/MongodbConnection");
 
 app.set("view engine","ejs");
 app.set("views","views");
@@ -25,8 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(errors.error);
 
 const PORT = 3000;
-mongoConnect((client)=>{
-  console.log(client);
+mongoConnect(()=>{
   app.listen(PORT,()=>{
   console.log(`my server is starting : http://localhost:${PORT}`);
 })

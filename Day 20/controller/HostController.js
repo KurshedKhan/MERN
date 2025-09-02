@@ -23,14 +23,18 @@ exports.edithomeItem = (req,res,next)=>{
 exports.homeadded = (req,res,next)=>{
   const {homeId,productName,price,images,description} = req.body;
   const homeObj = new MyHome(homeId,productName,price,images,description);
-  homeObj.save();
+  homeObj.save().then(()=>{
+    console.log("home added successfully");
+  });
   res.redirect("/host/host-home-list");
 }
 
 exports.postEditHome = (req,res,next)=>{
   const {homeId,productName,price,images,description} = req.body;
   const homeObj = new MyHome(homeId,productName,price,images,description);
-  homeObj.save();
+  homeObj.save().then(()=>{
+    console.log("Home saved successfully.")
+  });
   res.redirect("/host/host-home-list");
 }
 
@@ -47,7 +51,7 @@ exports.deletehomeItem = (req,res,next)=>{
 
 exports.hostHomeList = (req,res,next)=>{
   MyHome.fetchAll()
-  .then(([eleItems])=>{
+  .then(eleItems=>{
     res.render('host/host-home-list',{items:eleItems});
   });
 }

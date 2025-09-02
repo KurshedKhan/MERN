@@ -4,7 +4,7 @@ const Favourite = require("../models/favourite");
 
 exports.main = (req,res,next)=>{
   MyHome.fetchAll()
-  .then(([eleItems])=>{
+  .then(eleItems=>{
     res.render('store/home',{items:eleItems});
     console.log(eleItems)
   })
@@ -17,7 +17,7 @@ exports.bookings = (req,res,next)=>{
 exports.favourite = (req,res,next)=>{
     Favourite.favouriteFetchAll(favourites =>{
         MyHome.fetchAll()
-        .then(([registeredHomes])=>{
+        .then(registeredHomes=>{
             const favouriteHomes = registeredHomes.filter(home => favourites.includes(home.id));
             res.render('store/favourite',{favouriteHomes:favouriteHomes});
         })
@@ -36,7 +36,7 @@ exports.postFavourite = (req,res,next)=>{
 }
 exports.homeDetails = (req,res,next)=>{
      MyHome.fetchAll()
-     .then(([eleItems])=>{
+     .then(eleItems=>{
     res.render('store/home-details',{items:eleItems});
   });
 }
@@ -55,7 +55,7 @@ exports.homeDetail = (req,res,next)=>{
 }
 exports.homeList = (req,res,next)=>{
     MyHome.fetchAll()
-    .then(([eleItems])=>{
+    .then(eleItems =>{
     res.render('store/home-list',{items:eleItems});
   });
 }

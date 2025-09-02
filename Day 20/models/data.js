@@ -1,3 +1,5 @@
+const { getDB } = require("../utilities/MongodbConnection");
+
 // database 
 module.exports = class MyHome {
   constructor(homeId,productName,price,images,description) {
@@ -9,9 +11,13 @@ module.exports = class MyHome {
   }
 
   save() {
+    const db = getDB();
+    return db.collection('homes').insertOne(this);
   }
 
-  static fetchAll(callback) {
+  static fetchAll() {
+    const db = getDB();
+    return db.collection('homes').find().toArray();
 
   }
 
