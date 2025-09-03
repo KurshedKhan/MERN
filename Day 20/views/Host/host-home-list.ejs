@@ -10,8 +10,8 @@
     </p>
     <a href="#" class="btn btn-primary"><%= item.price %></a>
     <div class="d-flex justify-content-between align-items-center my-2">
-      <a href="/host/editHome/<%= item.homeId %>?editable=true" class="btn btn-success w-100">Edit</a>
-      <form action="/host/deleteHome/<%= item.homeId %>" method="POST">
+      <a href="/host/editHome/<%= item._id %>?editable=true" class="btn btn-success w-100">Edit</a>
+      <form action="/host/deleteHome/<%= item._id %>" method="POST">
         <button type="submit" class="btn btn-danger w-100">Delete</button>
       </form>
     </div>

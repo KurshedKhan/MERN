@@ -1,9 +1,12 @@
+const { ObjectId } = require("mongodb");
 const { getDB } = require("../utilities/MongodbConnection");
 
 // database 
 module.exports = class MyHome {
-  constructor(homeId,productName,price,images,description) {
-    this.homeId = homeId;
+  constructor(_id,productName,price,images,description) {
+    if(_id){
+      this._id = _id;
+    }
     this.productName = productName;
     this.price = price;
     this.images = images;
@@ -12,7 +15,17 @@ module.exports = class MyHome {
 
   save() {
     const db = getDB();
-    return db.collection('homes').insertOne(this);
+    if(this._id){
+      const updateField = {
+        productName : this.productName,
+        price : this.price,
+        images : this.images,
+        description : this.description
+      };
+       return db.collection('homes').updateOne({_id: new ObjectId(String(this._id))},{$set:updateField});
+    }else{
+      return db.collection('homes').insertOne(this);
+    }
   }
 
   static fetchAll() {
@@ -22,10 +35,12 @@ module.exports = class MyHome {
   }
 
   static findById(homeId){
-   
+    const db = getDB();
+    return db.collection('homes').find({_id: new ObjectId(String(homeId))}).next();
   }
 
   static DeleteById(homeId){
-  
+  const db = getDB();
+    return db.collection('homes').deleteOne({_id: new ObjectId(String(homeId))});
   }
 };

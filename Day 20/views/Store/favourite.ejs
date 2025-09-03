@@ -10,8 +10,8 @@
     </p>
     <a href="#" class="btn btn-primary"><%= item.price %></a>
     <div class="my-2">
-      <a class="btn btn-primary w-100" href="/store/home-details/<%= item.homeId %>">Details</a>
-       <form action="/store/favourite/deleteFavourite/<%= item.homeId %>" method="POST">
+      <a class="btn btn-primary w-100" href="/store/home-details/<%= item._id %>">Details</a>
+       <form action="/store/favourite/deleteFavourite/<%= item._id %>" method="POST">
         <button type="submit" class="btn btn-success w-100">Remove</button>
       </form>
     </div>

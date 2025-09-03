@@ -9,8 +9,7 @@ exports.edithomeItem = (req,res,next)=>{
   const homeId = req.params.homeId;
   const editable = req.query.editable === "true";
 
-  MyHome.findById(homeId).then(([homes])=>{
-    const home = homes[0];
+  MyHome.findById(homeId).then(home=>{
     if(!home){
       console.log("Home not found");
       return res.redirect("/host/host-home-list")
@@ -32,8 +31,8 @@ exports.homeadded = (req,res,next)=>{
 exports.postEditHome = (req,res,next)=>{
   const {homeId,productName,price,images,description} = req.body;
   const homeObj = new MyHome(homeId,productName,price,images,description);
-  homeObj.save().then(()=>{
-    console.log("Home saved successfully.")
+  homeObj.save().then((result)=>{
+    console.log("Home saved successfully.",result)
   });
   res.redirect("/host/host-home-list");
 }

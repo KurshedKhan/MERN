@@ -42,8 +42,7 @@ exports.homeDetails = (req,res,next)=>{
 }
 exports.homeDetail = (req,res,next)=>{
     const homeId = req.params.homeId;
-    MyHome.findById(homeId).then(([homes])=>{
-      const home = homes[0]
+    MyHome.findById(homeId).then(home=>{
       if(!home){
         console.log("Home not found");
         res.redirect("store/home")
