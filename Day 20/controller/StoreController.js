@@ -15,24 +15,29 @@ exports.bookings = (req,res,next)=>{
 }
 
 exports.favourite = (req,res,next)=>{
-    Favourite.favouriteFetchAll(favourites =>{
+    Favourite.favouriteFetchAll().then(favourites => {
+      favourites = favourites.map(fav => fav.homeId)
         MyHome.fetchAll()
         .then(registeredHomes=>{
-            const favouriteHomes = registeredHomes.filter(home => favourites.includes(home.id));
+            const favouriteHomes = registeredHomes.filter(home => favourites.includes(home._id.toString()));
             res.render('store/favourite',{favouriteHomes:favouriteHomes});
         })
     })
 }
 
 exports.postFavourite = (req,res,next)=>{
-    console.log(req.body);
-    Favourite.addToFavourite(req.body.id, error => {
-        if(error){
-            console.log("Error while marking favourite");
-        }
-        res.redirect("/store/favourite");
+    const homeId = req.body.homeId;
+    const fav = new Favourite(homeId);
+    fav.addToFavourite()
+    .then((result)=>{
+      console.log("faviourite added ",result)
     })
-    
+    .catch((error)=>{
+       console.log("Error while marking favourite",error);
+    })
+    .finally(()=>{
+      res.redirect("/store/favourite");
+    })
 }
 exports.homeDetails = (req,res,next)=>{
      MyHome.fetchAll()

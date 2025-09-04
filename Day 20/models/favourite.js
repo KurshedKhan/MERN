@@ -1,33 +1,22 @@
-const file = require("fs");
-const path = require("path");
-const baseDir = require("../utilities/util");
+const { ObjectId } = require("mongodb");
+const { getDB } = require("../utilities/MongodbConnection");
 
 module.exports = class Favourite {
+    constructor(homeId){
+      this.homeId = homeId;
+    }
 
-    static addToFavourite(homeId,callback) {
-      Favourite.favouriteFetchAll((favourite) => {
-       if(favourite.includes(homeId)){
-        callback("Home is already marked favourite");
-       }else{
-         favourite.push(homeId);
-          const pathDir = path.join(baseDir, "database", "favourite.json");
-          file.writeFile(pathDir, JSON.stringify(favourite),callback);
-       }
-      });
+    addToFavourite() {
+      const db = getDB();
+      return db.collection('favourite').insertOne(this);
     }
 
   static favouriteFetchAll(callback) {
-    const pathDir = path.join(baseDir, "database", "favourite.json");
-    file.readFile(pathDir, (error, data) => {
-      callback(!error ? JSON.parse(data) : []);
-    });
+    const db = getDB();
+    return db.collection('favourite').find().toArray();
   }
 
   static DeleteById(homeId,callback){
-    Favourite.favouriteFetchAll((homes)=>{
-      const next = homes.map(id => String(id) !== String(homeId));
-      const pathDir = path.join(baseDir, "database", "favourite.json");
-      file.writeFile(pathDir, JSON.stringify(next), callback);
-    })
+    
   }  
 };
