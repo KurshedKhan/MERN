@@ -70,10 +70,13 @@ exports.reserve = (req,res,next)=>{
 exports.FavouriteRemove = (req,res,next)=>{
   const favouriteId = req.params.favouriteId;
   Favourite.DeleteById(favouriteId)
-  .then(()=>{
-    res.redirect("/store/home-list");
+  .then((result)=>{
+    console.log("Favourite Remove : ",result)
   })
   .catch((error)=>{
-      console.log("delete favourite item error",error)
+    console.log("delete favourite item error",error)
+  })
+  .finally(()=>{
+    res.redirect("/store/home-list");
   })
 }

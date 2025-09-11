@@ -8,15 +8,22 @@ module.exports = class Favourite {
 
     addToFavourite() {
       const db = getDB();
-      return db.collection('favourite').insertOne(this);
+      return db.collection('favourite').findOne({homeId:this.homeId})
+      .then((existingFav)=>{
+        if(!existingFav){
+          return db.collection('favourite').insertOne(this);
+        }
+        return Promise.resolve();
+      })
     }
 
-  static favouriteFetchAll(callback) {
+  static favouriteFetchAll() {
     const db = getDB();
     return db.collection('favourite').find().toArray();
   }
 
-  static DeleteById(homeId,callback){
-    
+  static DeleteById(delHomeId){
+      const db = getDB();
+      return db.collection('favourite').deleteOne({homeId:delHomeId});
   }  
 };
