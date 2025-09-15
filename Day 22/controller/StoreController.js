@@ -5,13 +5,13 @@ const Favourite = require("../models/favourite");
 exports.main = (req,res,next)=>{
   MyHome.find()
   .then(eleItems=>{
-    res.render('store/home',{items:eleItems});
+    res.render('store/home',{items:eleItems,isLoggedIn : req.isLoggedIn});
     console.log(eleItems)
   })
 }
 
 exports.bookings = (req,res,next)=>{
-    res.render('store/bookings');
+    res.render('store/bookings',{isLoggedIn : req.isLoggedIn});
 }
 
 exports.favourite = (req,res,next)=>{
@@ -19,7 +19,7 @@ exports.favourite = (req,res,next)=>{
     .populate('homeId')
     .then(favourites => {
       favouriteHomes = favourites.map(fav => fav.homeId)
-      res.render('store/favourite',{favouriteHomes:favouriteHomes})
+      res.render('store/favourite',{favouriteHomes:favouriteHomes,isLoggedIn : req.isLoggedIn})
     })
 }
 
@@ -44,7 +44,7 @@ exports.postFavourite = (req,res,next)=>{
 exports.homeDetails = (req,res,next)=>{
      MyHome.find()
      .then(eleItems=>{
-    res.render('store/home-details',{items:eleItems});
+    res.render('store/home-details',{items:eleItems,isLoggedIn : req.isLoggedIn});
   });
 }
 exports.homeDetail = (req,res,next)=>{
@@ -55,18 +55,18 @@ exports.homeDetail = (req,res,next)=>{
         res.redirect("store/home")
       }
       else{
-        res.render("store/home-details",{home:home})
+        res.render("store/home-details",{home:home,isLoggedIn : req.isLoggedIn})
       }
     });
 }
 exports.homeList = (req,res,next)=>{
     MyHome.find()
     .then(eleItems =>{
-    res.render('store/home-list',{items:eleItems});
+    res.render('store/home-list',{items:eleItems,isLoggedIn : req.isLoggedIn});
   });
 }
 exports.reserve = (req,res,next)=>{
-    res.render('store/reserve');
+    res.render('store/reserve',{isLoggedIn : req.isLoggedIn});
 }
 
 exports.FavouriteRemove = (req,res,next)=>{

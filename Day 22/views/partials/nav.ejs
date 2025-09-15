@@ -13,6 +13,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <% if (isLoggedIn) { %>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
@@ -64,6 +65,7 @@
             </li>
             
           </ul>
+          <% } %>
           <form class="d-flex" role="search">
             <ul>
               <li>

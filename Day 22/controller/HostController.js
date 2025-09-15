@@ -2,7 +2,7 @@
 const MyHome = require("../models/data");
 
 exports.editHome = (req,res,next)=>{
-  res.render('host/editHome',{editable : false});
+  res.render('host/editHome',{editable : false,isLoggedIn : req.isLoggedIn});
 }
 
 exports.edithomeItem = (req,res,next)=>{
@@ -14,7 +14,7 @@ exports.edithomeItem = (req,res,next)=>{
       console.log("Home not found");
       return res.redirect("/host/host-home-list")
     }
-    res.render('host/editHome',{editable : editable,home:home});
+    res.render('host/editHome',{editable : editable,home:home,isLoggedIn : req.isLoggedIn});
   })
 
 }
@@ -63,6 +63,6 @@ exports.deletehomeItem = (req,res,next)=>{
 exports.hostHomeList = (req,res,next)=>{
   MyHome.find()
   .then(eleItems=>{
-    res.render('host/host-home-list',{items:eleItems});
+    res.render('host/host-home-list',{items:eleItems,isLoggedIn : req.isLoggedIn});
   });
 }
