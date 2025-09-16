@@ -13,26 +13,26 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <% if (isLoggedIn) { %>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a
+            <% if (isLoggedIn) { %>
+              <li class="nav-item">
+                <a
                 class="nav-link active bg-danger text-white rounded-1"
                 aria-current="page"
                 href="/host/addItem"
                 >Add Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
+                >
+              </li>
+              <li class="nav-item">
+                <a
                 class="nav-link active bg-danger text-white rounded-1"
                 aria-current="page"
                 href="/store/bookings"
                 >Bookings</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
+                >
+              </li>
+              <li class="nav-item">
+                <a
                 class="nav-link active bg-danger text-white rounded-1"
                 aria-current="page"
                 href="/store/favourite"
@@ -41,38 +41,42 @@
             </li>
             <li class="nav-item">
               <a
-                class="nav-link active bg-danger text-white rounded-1"
-                aria-current="page"
-                href="/store/home-list"
-                >Home List</a
+              class="nav-link active bg-danger text-white rounded-1"
+              aria-current="page"
+              href="/store/home-list"
+              >Home List</a
               >
             </li>
             <li class="nav-item">
               <a
-                class="nav-link active bg-danger text-white rounded-1"
-                aria-current="page"
-                href="/store/reserve"
-                >Reserve</a
+              class="nav-link active bg-danger text-white rounded-1"
+              aria-current="page"
+              href="/store/reserve"
+              >Reserve</a
               >
             </li>
             <li class="nav-item">
               <a
-                class="nav-link active bg-danger text-white rounded-1"
-                aria-current="page"
-                href="/host/host-home-list"
-                >hostHomeList</a
+              class="nav-link active bg-danger text-white rounded-1"
+              aria-current="page"
+              href="/host/host-home-list"
+              >hostHomeList</a
               >
             </li>
             
           </ul>
           <% } %>
-          <form class="d-flex" role="search">
             <ul>
               <li>
+                <% if (!isLoggedIn) { %>
                 <a href="/login" class="btn btn-primary">Login</a>
+                <% } else { %>
+                  <form action="/logout" method="POST">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                  </form>
+                 <% } %>
               </li>
             </ul>
-          </form>
         </div>
       </div>
     </nav>

@@ -20,11 +20,12 @@ app.use(express.static(path.join(basedir,"public")))
 app.use(express.urlencoded({ extended: false }));
 
 app.use((req,res,next)=>{
-  console.log("Cookie Check middleware",req.get('Cookie'))
-  req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true' : false;
+  console.log("Cookie Check middleware",req.get('Cookie'));
+  req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[2] === 'true' : false;
   next();
 })
 
+app.use(authRouter);
 app.use(StoreRouter);
 app.use('/host',(req,res,next)=>{
   if(req.isLoggedIn){
@@ -34,7 +35,6 @@ app.use('/host',(req,res,next)=>{
     res.redirect("/login")
   }
 })
-app.use(authRouter);
 app.use(hostRouter);
 
 app.set('views', path.join(__dirname, 'views'));
