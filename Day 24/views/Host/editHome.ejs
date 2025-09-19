@@ -1,0 +1,63 @@
+<%- include("../partials/BasicTopCode") %> <%- include("../partials/nav") %>
+
+<form action="/host/<%= editable ? 'editHome' : 'addItem' %>" method="POST" class="p-5 border border2 bg-primary-subtle">
+  <h4 class="container text-center"><%= editable ? "Edit" : "add" %> your item details</h4>
+  <div class="form-group pb-3">
+    <input
+      type="hidden"
+      value="<%= editable ? home._id : '' %>"
+      name="homeId"
+      class="form-control"
+      id="homeId"
+      placeholder="Enter your item"
+    />
+  </div>
+  <div class="form-group pb-3">
+    <label for="productName">Enter Your Item</label>
+    <input
+      type="text"
+      value="<%= editable ? home.productName : '' %>"
+      name="productName"
+      class="form-control"
+      id="productName"
+      placeholder="Enter your item"
+    />
+  </div>
+  <div class="form-group  pb-3">
+    <label for="price">Enter Your Item Price</label>
+    <input
+      type="text"
+      value="<%= editable ? home.price : '' %>"
+      name="price"
+      class="form-control"
+      id="price"
+      placeholder="Enter your item price"
+    />
+  </div>
+  <div class="form-group  pb-3">
+    <label for="images">Enter Your Item Images</label>
+    <input
+      type="text"
+      value="<%= editable ? home.images : '' %>"
+      name="images"
+      class="form-control"
+      id="images"
+      placeholder="Enter your item Images"
+    />
+  </div>
+  <div class="form-group  pb-3">
+    <label for="description">Enter Your Item description</label>
+    <input
+      type="text"
+      value="<%= editable ? home.description : '' %>"
+      name="description"
+      class="form-control"
+      id="description"
+      placeholder="Enter your item description"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary"><%= editable ? "Update" : "Submit" %></button>
+</form>
+
+<%- include("../partials/footer") %>
