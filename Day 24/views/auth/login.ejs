@@ -2,14 +2,16 @@
 
 <form action="/login" method="POST" class="p-5 border border2 bg-primary-subtle">
   <h4 class="container text-center">login with your info</h4>
- 
+  <%- include("../partials/errors.ejs") %>
   <div class="form-group  pb-3">
-    <label for="price">Enter Your username</label>
+    <label for="email">Enter Your Email</label>
     <input
-      type="text"
-      name="username"
+      type="email"
+      name="email"
+      id="email"
       class="form-control"
-      placeholder="Email/Username"
+      value="<%= oldInput.email ? oldInput.email : '' %>"
+      placeholder="Enter your email"
       required
     />
   </div>
