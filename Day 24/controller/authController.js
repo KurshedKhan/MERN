@@ -3,7 +3,12 @@ const bcrypt = require("bcryptjs");
 
 const { check, validationResult } = require("express-validator");
 exports.getLogin = (req, res, next) => {
-  res.render("auth/login", { isLoggedIn: false,errorMessage:[],oldInput : {email : ""}, });
+  res.render("auth/login", {
+    isLoggedIn: false,
+    errorMessage: [],
+    oldInput: { email: "" },
+    user : {}
+  });
 };
 
 exports.getSignUp = (req, res, next) => {
@@ -17,27 +22,30 @@ exports.getSignUp = (req, res, next) => {
       password: "",
       userType: "",
     },
+    user : {}
   });
 };
 
 exports.postLogin = async (req, res, next) => {
-  const {email,password} = req.body;
-  const user = await User.findOne({email})
-  if(!user){
-    return res.status(422).render("auth/login",{
-      isLoggedIn : false,
-      errorMessage : ["user does not exist"],
-      oldInput : {email}
-    })
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(422).render("auth/login", {
+      isLoggedIn: false,
+      errorMessage: ["user does not exist"],
+      oldInput: { email },
+      user : {}
+    });
   }
 
-  const match = await bcrypt.compare(password,user.password);
-  if(!match){
-    return res.status(422).render("auth/login",{
-      isLoggedIn : false,
-      errorMessage : ["Invalid Password"],
-      oldInput : {password}
-    })
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) {
+    return res.status(422).render("auth/login", {
+      isLoggedIn: false,
+      errorMessage: ["Invalid Password"],
+      oldInput: { password },
+      user : {}
+    });
   }
   req.session.isLoggedIn = true;
   req.session.user = user;
@@ -121,6 +129,7 @@ exports.postSignUp = [
           password,
           userType,
         },
+        user : {}
       });
     }
 
@@ -150,9 +159,10 @@ exports.postSignUp = [
             password,
             userType,
           },
+          user : {}
         });
       });
-  }
+  },
 ];
 
 exports.postLogout = (req, res, next) => {
